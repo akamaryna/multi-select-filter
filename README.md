@@ -1,6 +1,7 @@
 # multi-select-filter
 
 This is my Frontend Developer Assessment: Multi-Select Filter for Bol.com.
+
 Instructions I followed ca be found [here](/docs/instructions.md)
 
 ## Recommended IDE Setup

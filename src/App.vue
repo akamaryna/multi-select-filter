@@ -4,10 +4,10 @@
   </header>
   
   <main>
-    <HelloWorld msg="You did it!" />
+    <Page/>
   </main>
 </template>
 
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Page from './components/Page.vue'
 </script>
