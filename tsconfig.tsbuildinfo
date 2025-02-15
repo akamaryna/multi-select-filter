@@ -1,0 +1,1 @@
+{"root":["./src/app.vue","./src/api.ts","./src/main.ts","./src/types.ts","./src/components/filter.spec.ts","./src/components/filter.vue","./src/components/page.vue","./src/mocks/product-groups-mock.ts","./src/stores/core.ts"],"version":"5.7.3"}

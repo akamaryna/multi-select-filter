@@ -5,6 +5,7 @@
   <Filter
     :options="productGroups"
     :optionsSelected="productGroupsSelected"
+    label="Productgroep"
     @change="apply"
   />
   <p>Geselecteerde productgroepen: {{ productGroupsSelected }}</p>
@@ -14,7 +15,7 @@
 import { onBeforeMount } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useFilterStore } from '../stores/core'
-import Filter from './Filter.vue'
+import Filter from '@/components/Filter.vue'
 
 const store = useFilterStore()
 const { getData, setSelectedProductGroupsInLocalStorage } = store

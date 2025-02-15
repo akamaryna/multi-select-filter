@@ -1,4 +1,4 @@
-import { ref, computed, watch, onBeforeMount } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import { defineStore } from 'pinia'
 import { getProductGroups } from '@/api'
 import type { FilterOption } from '@/types'

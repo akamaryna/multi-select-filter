@@ -1,16 +1,18 @@
 <template>
   <form
+    data-test="filter"
     @submit.prevent="emit('change', optionsSelectedIntermediary)"
   >
     <fieldset>
-      <legend id="filter-label">Productgroep</legend>
+      <legend id="filter-label">{{ label }}</legend>
       <div>
         <input
           type="search"
           id="search"
           v-model="filterInput"
           placeholder="Zoek op ..."
-          aria-label="Zoek in productgroepen"
+          aria-label="Zoek in filteropties"
+          data-test="search"
         />
       </div>
       <ul
@@ -19,6 +21,7 @@
         <li
           v-for="option in optionsAvailable"
           :key="option"
+          data-test="option"
         >
           <label>
             <input
@@ -43,6 +46,7 @@ import type { FilterOption } from '@/types'
 const { options, optionsSelected = [] } = defineProps<{
   options: FilterOption[]
   optionsSelected?: FilterOption[]
+  label: string
 }>()
 
 const emit = defineEmits<{
@@ -58,7 +62,7 @@ watchEffect(() => {
   optionsSelectedIntermediary.value = [...optionsSelected]
 })
 
-const optionsSorted = computed(() => {  
+const optionsSorted = computed(() => {
   return [...options].sort((a, b) => {
     if (optionsSelected.includes(a)) {
       return -1
@@ -70,7 +74,7 @@ const optionsSorted = computed(() => {
   })
 })
 
-const optionsAvailable = computed(() => {    
+const optionsAvailable = computed(() => {
   return optionsSorted.value.filter((option) => {
     return option.toLowerCase().includes(filterInput.value.toLowerCase())
   })
