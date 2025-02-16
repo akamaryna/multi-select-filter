@@ -51,7 +51,7 @@ describe('Filter', () => {
       const index = 3
       const wrapper = createWrapper()
       const optionToSelect = wrapper.findAll('[data-test="option"]')[index]
-      await optionToSelect.get('input[type="checkbox"]').setValue(true)
+      await optionToSelect.get('input[type="checkbox"]').trigger('click')
       expect(
         wrapper.findAll('[data-test="option"]')[index].text())
         .toBe(optionToSelect.text()
@@ -63,15 +63,28 @@ describe('Filter', () => {
     it('should correctly emit selected options when form is submitted', async () => {
       const wrapper = createWrapper()
       const options = wrapper.findAll('[data-test="option"]')
-      await options[0].get('input[type="checkbox"]').setValue(true)
-      await options[1].get('input[type="checkbox"]').setValue(true)
-      await options[2].get('input[type="checkbox"]').setValue(true)
+      await options[0].get('input[type="checkbox"]').trigger('click')
+      await options[1].get('input[type="checkbox"]').trigger('click')
+      await options[2].get('input[type="checkbox"]').trigger('click')
       // Unselect the first option
-      await options[0].get('input[type="checkbox"]').setValue(false)
+      await options[0].get('input[type="checkbox"]').trigger('click')
       await wrapper.find('form').trigger('submit.prevent')
       expect(
         wrapper.emitted().change[0])
         .toEqual([[productGroupsMock[1], productGroupsMock[2]]])
+    })
+  })
+
+  describe('Keyboard Navigation', () => {
+    it('should select options using keyboard navigation', async () => {  
+      const wrapper = createWrapper()
+      const options = wrapper.findAll('[data-test="option"]')
+      const firstOptionLabel = options[0].get('[data-test="option-label"]')
+      await firstOptionLabel.trigger('keydown', { key: ' ' })
+      const secondOptionLabel = options[1].get('[data-test="option-label"]')  
+      await secondOptionLabel.trigger('keydown', { key: 'Enter' })
+      expect(firstOptionLabel.find<HTMLInputElement>('input[type="checkbox"]').element.checked).toBe(true)
+      expect(secondOptionLabel.find<HTMLInputElement>('input[type="checkbox"]').element.checked).toBe(true)
     })
   })
 })
