@@ -1,7 +1,7 @@
 import { ref, onBeforeMount } from 'vue'
 import { defineStore } from 'pinia'
-import { getProductGroups } from '@/api'
-import type { FilterOption } from '@/types'
+import { getProductGroups } from '@/api/api'
+import type { FilterOption } from '@/types/types'
 
 export const useFilterStore = defineStore('filter', () => {
   const productGroups = ref<FilterOption[]>([])

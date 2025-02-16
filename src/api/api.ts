@@ -1,4 +1,4 @@
-import type { FilterOption } from '@/types'
+import type { FilterOption } from '@/types/types'
 
 export const getProductGroups = async (): Promise<FilterOption[]> => {
   const response = await fetch('/items.json')

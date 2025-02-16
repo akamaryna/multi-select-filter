@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <h1>Welkom mijn geweldige filter</h1>
-  </div>
+  <h1>Multi-Select Filter</h1>
+  <br />
   <Filter
     :options="productGroups"
     :optionsSelected="productGroupsSelected"
     label="Productgroep"
     @change="apply"
   />
+  <br />
   <p>Geselecteerde productgroepen: {{ productGroupsSelected }}</p>
 </template>
 
